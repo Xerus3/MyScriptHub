@@ -1,11 +1,11 @@
-local function run(url)
-    local s, e = pcall(function()
-        local code = game:HttpGet(url)
-        local f = loadstring(code)
-        if f then f() else warn("Failed to compile: "..url) end
+for _, url in ipairs({
+    "https://raw.githubusercontent.com/Xerus3/MyScriptHub/refs/heads/main/Teleportation.lua",
+    "https://raw.githubusercontent.com/Xerus3/MyScriptHub/refs/heads/main/Autofarm.lua"
+}) do
+    local s, r = pcall(function()
+        loadstring(game:HttpGet(url))()
     end)
-    if not s then warn("Error loading: "..url.."\n"..e) end
+    if not s then
+        warn("Failed to load: "..url, r)
+    end
 end
-
-run("https://raw.githubusercontent.com/Xerus3/MyScriptHub/main/Teleportation.lua")
-run("https://raw.githubusercontent.com/Xerus3/MyScriptHub/main/Autofarm.lua")
